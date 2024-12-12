@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\Services\ServiceController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -52,4 +53,16 @@ Route::controller(DepartmentController::class)
         Route::get('/{service}/edit', 'edit')->name('admin.services.edit');
         Route::put('/{service}/update', 'update')->name('admin.services.update');
         Route::delete('/{service}/delete', 'destroy')->name('admin.services.destroy');
+    });
+
+    Route::controller(StudentController::class)
+    ->middleware(['auth'])
+    ->prefix('admin/students')
+    ->group(function () {
+        Route::get('/', 'index')->name('admin.students.index');
+        Route::get('/create', 'create')->name('admin.students.create');
+        Route::post('/store', 'store')->name('admin.students.store');
+        Route::get('/{student}/edit', 'edit')->name('admin.students.edit');
+        Route::put('/{student}/update', 'update')->name('admin.students.update');
+        Route::delete('/{student}/delete', 'destroy')->name('admin.students.destroy');
     });

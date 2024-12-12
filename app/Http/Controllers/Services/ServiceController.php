@@ -58,7 +58,7 @@ class ServiceController extends Controller
             $data['picture'] = $service->picture;
         }
     
-        $service->update($data);
+        $service->save($data);
 
         return redirect()->route('admin.services.index')->with('status', __('messages.service_updated'));
     }

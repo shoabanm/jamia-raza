@@ -109,7 +109,7 @@
                                     <a class="nav-link" href="#">{{ __('admin.all_users') }}</a>
                                     <a class="nav-link" href="#">{{ __('admin.moderators') }}</a>
                                     <a class="nav-link" href="#">{{ __('admin.teachers') }}</a>
-                                    <a class="nav-link" href="#">{{ __('admin.students') }}</a>
+                                    <a class="nav-link" href="{{ route('admin.students.index') }}">{{ __('admin.students') }}</a>
                                     <a class="nav-link" href="#">{{ __('admin.normal_users') }}</a>
                                 </nav>
                             </div>
