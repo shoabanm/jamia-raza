@@ -65,7 +65,7 @@ class DepartmentController extends Controller
             $data['picture'] = $department->picture;
         }
     
-        $department->save($data);
+        $department->update($data);
         return redirect()->route('admin.departments.index')->with('status', __('messages.department_updated'));
     }
     
