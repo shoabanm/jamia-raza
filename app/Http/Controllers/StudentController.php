@@ -34,7 +34,7 @@ class StudentController extends Controller
 
         Student::create($data);
 
-        return redirect()->route('admin.students.index')->with('success', __('students.student_created'));
+        return redirect()->route('admin.students.index')->with('status', __('students.student_created'));
     }
 
     public function edit(Student $student)
@@ -63,7 +63,7 @@ class StudentController extends Controller
 
         $student->update($data);
 
-        return redirect()->route('admin.students.index')->with('success', __('students.student_updated'));
+        return redirect()->route('admin.students.index')->with('status', __('students.student_updated'));
     }
 
     public function destroy(Student $student)
@@ -72,6 +72,6 @@ class StudentController extends Controller
             Storage::disk('public')->delete($student->picture);
         }
         $student->delete();
-        return redirect()->route('admin.students.index')->with('success', __('students.student_deleted'));
+        return redirect()->route('admin.students.index')->with('status', __('students.student_deleted'));
     }
 }

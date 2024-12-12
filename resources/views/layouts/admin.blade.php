@@ -56,7 +56,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">{{ __('admin.core') }}</div>
-                            <a class="nav-link" href="/">
+                            <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 {{ __('admin.dashboard') }}
                             </a>
@@ -67,14 +67,14 @@
                             
                             <!-- Departments Section -->
                             <div class="sb-sidenav-menu-heading">{{ __('admin.departments_section') }}</div>
-                            <a class="nav-link" href="{{ route('admin.departments.index') }}">
+                            <a class="nav-link {{ request()->routeIs('admin.departments.index') ? 'active' : '' }}" href="{{ route('admin.departments.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
                                 {{ __('admin.departments') }}
                             </a>
 
                              <!-- Services Section -->
                              <div class="sb-sidenav-menu-heading">{{ __('admin.services_section') }}</div>
-                             <a class="nav-link" href="{{ route('admin.services.index') }}">
+                             <a class="nav-link {{ request()->routeIs('admin.services.index') ? 'active' : '' }}" href="{{ route('admin.services.index') }}">
                                  <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
                                  {{ __('admin.services') }}
                              </a>
@@ -99,17 +99,24 @@
                                 </nav>
                             </div>
                             
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            @php
+                                $userRoutes = [
+                                    'admin.students.index',
+                                ];
+                            @endphp
+                            <a class="nav-link {{ in_array(Route::currentRouteName(), $userRoutes) ? 'active' : '' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="{{ in_array(Route::currentRouteName(), $userRoutes) ? 'true' : 'false' }}" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 {{ __('admin.users') }}
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse {{ in_array(Route::currentRouteName(), $userRoutes) ? 'show' : '' }}" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="#">{{ __('admin.all_users') }}</a>
                                     <a class="nav-link" href="#">{{ __('admin.moderators') }}</a>
                                     <a class="nav-link" href="#">{{ __('admin.teachers') }}</a>
-                                    <a class="nav-link" href="{{ route('admin.students.index') }}">{{ __('admin.students') }}</a>
+                                    <a class="nav-link {{ request()->routeIs('admin.students.index') ? 'active' : '' }}" href="{{ route('admin.students.index') }}">
+                                        {{ __('admin.students') }}
+                                    </a>                                                                       
                                     <a class="nav-link" href="#">{{ __('admin.normal_users') }}</a>
                                 </nav>
                             </div>

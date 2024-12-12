@@ -7,7 +7,7 @@ return [
     'logout' => 'Logout',
     'core' => 'Core',
     'dashboard' => 'Dashboard',
-    'serices' => 'Services',
+    'services' => 'Services',
     'serices_section' => 'Services Section',
     'general_settings' => 'General Settings',
     'departments_section' => 'Departments Section',

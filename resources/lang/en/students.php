@@ -1,6 +1,7 @@
 <?php
 return [
     'title' => 'Students',
+    'list' => 'Students List',
     'create' => 'Create Student',
     'edit' => 'Edit Student',
     'first_name' => 'First Name',
