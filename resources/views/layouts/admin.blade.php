@@ -60,16 +60,24 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 {{ __('admin.dashboard') }}
                             </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
+                            <a class="nav-link {{ request()->routeIs('admin.general-settings-app.index') || request()->routeIs('admin.general-settings-app.edit') ? 'active' : '' }}" href="{{ route('admin.general-settings-app.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 {{ __('admin.general_settings') }}
                             </a>
+
+                            
                             
                             <!-- Departments Section -->
                             <div class="sb-sidenav-menu-heading">{{ __('admin.departments_section') }}</div>
                             <a class="nav-link {{ request()->routeIs('admin.departments.index') ? 'active' : '' }}" href="{{ route('admin.departments.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
                                 {{ __('admin.departments') }}
+                            </a>
+                            {{-- Founders Section --}}
+                            <div class="sb-sidenav-menu-heading">{{ __('admin.founders_section') }}</div>
+                            <a class="nav-link {{ request()->routeIs('admin.founders.index') ? 'active' : '' }}" href="{{ route('admin.founders.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
+                                {{ __('admin.founders') }}
                             </a>
 
                              <!-- Services Section -->
@@ -81,12 +89,20 @@
                             
                             <!-- Ayat of the Day Section -->
                             <div class="sb-sidenav-menu-heading">{{ __('admin.ayat_of_the_day_section') }}</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link {{ request()->routeIs('admin.ayat.index') || request()->routeIs('admin.ayat.create') || request()->routeIs('admin.ayat.edit')? 'active' : '' }}" href="{{ route('admin.ayat.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-quran"></i></div>
                                 {{ __('admin.ayat_of_the_day') }}
                             </a>
+                            <a class="nav-link {{ request()->routeIs('admin.hadith.index') || request()->routeIs('admin.hadith.create') || request()->routeIs('admin.hadith.edit')? 'active' : '' }}" href="{{ route('admin.hadith.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-quran"></i></div>
+                                {{ __('admin.hadith_of_the_day') }}
+                            </a>
+                            <a class="nav-link {{ request()->routeIs('admin.saying.index') || request()->routeIs('admin.saying.create') || request()->routeIs('admin.saying.edit')? 'active' : '' }}" href="{{ route('admin.saying.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-quran"></i></div>
+                                {{ __('admin.saying_of_the_day') }}
+                            </a>
         
-                            <div class="sb-sidenav-menu-heading">{{ __('admin.interface') }}</div>
+                            <div class="sb-sidenav-menu-heading mb-2">{{ __('admin.interface') }}</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 {{ __('admin.news_posts') }}
@@ -94,7 +110,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">{{ __('admin.all_posts') }}</a>
+                                    <a class="nav-link" href="{{ route('admin.news.index') }}">{{ __('admin.all_posts') }}</a>
                                     <a class="nav-link" href="#">{{ __('admin.pending_posts') }}</a>
                                 </nav>
                             </div>
@@ -102,6 +118,7 @@
                             @php
                                 $userRoutes = [
                                     'admin.students.index',
+                                    'admin.teachers.index',
                                 ];
                             @endphp
                             <a class="nav-link {{ in_array(Route::currentRouteName(), $userRoutes) ? 'active' : '' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="{{ in_array(Route::currentRouteName(), $userRoutes) ? 'true' : 'false' }}" aria-controls="collapsePages">
@@ -113,26 +130,24 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="#">{{ __('admin.all_users') }}</a>
                                     <a class="nav-link" href="#">{{ __('admin.moderators') }}</a>
-                                    <a class="nav-link" href="#">{{ __('admin.teachers') }}</a>
+                                    <a class="nav-link {{ request()->routeIs('admin.teachers.index') ? 'active' : '' }}" href="{{ route('admin.teachers.index') }}">
+                                        {{ __('admin.teachers') }}
+                                    </a>
                                     <a class="nav-link {{ request()->routeIs('admin.students.index') ? 'active' : '' }}" href="{{ route('admin.students.index') }}">
                                         {{ __('admin.students') }}
                                     </a>                                                                       
                                     <a class="nav-link" href="#">{{ __('admin.normal_users') }}</a>
                                 </nav>
                             </div>
-                            
-                            <div class="sb-sidenav-menu-heading">{{ __('admin.addons') }}</div>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                {{ __('admin.charts') }}
+                            <a class="nav-link {{ request()->routeIs('admin.picture_gallery.index') || request()->routeIs('admin.picture_gallery.create') || request()->routeIs('admin.picture_gallery.edit')? 'active' : '' }}" href="{{ route("admin.picture_gallery.index") }}" >
+                                {{ __('admin.picture_gallery') }}
                             </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                {{ __('admin.tables') }}
+                            <a class="nav-link {{ request()->routeIs('admin.events.index') || request()->routeIs('admin.events.create') || request()->routeIs('admin.events.edit')? 'active' : '' }}" href="{{ route("admin.events.index") }}" >
+                                {{ __('admin.events') }}
                             </a>
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
+                    <div class="sb-sidenav-footer mt-4">
                         <div class="small">{{ __('admin.logged_in_as') }}</div>
                         {{ Auth::user()->name }}
                     </div>

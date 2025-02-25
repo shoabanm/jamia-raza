@@ -16,4 +16,6 @@ return [
     'description' => 'Description',
     'enrolled' => 'Enrolled',
     'passed_out' => 'Passed Out',
+    'event_date' => 'Event Date',
+    'pictures' => 'Pictures',
 ];

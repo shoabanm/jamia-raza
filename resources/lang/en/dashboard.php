@@ -10,4 +10,6 @@ return [
     'news_section' => 'News Section',
     'ayat_of_the_day' => 'Ayat of the Day',
     'hadith_of_the_day' => 'Hadith of the Day',
+    'saying_of_the_day' => 'Saying of the Day',
+    'picture_gallery' => 'Picture Gallery',
 ];

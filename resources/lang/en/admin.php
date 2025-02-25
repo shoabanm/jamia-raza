@@ -14,6 +14,8 @@ return [
     'departments' => 'Departments',
     'ayat_of_the_day_section' => 'Ayat of the Day Section',
     'ayat_of_the_day' => 'Ayat of the Day',
+    'hadith_of_the_day' => 'Hadith of the Day',
+    'saying_of_the_day' => 'Saying of the Day',
     'interface' => 'Interface',
     'news_posts' => 'News Posts',
     'all_posts' => 'All Posts',
@@ -31,5 +33,11 @@ return [
     'copyright' => 'Copyright',
     'privacy_policy' => 'Privacy Policy',
     'terms_conditions' => 'Terms & Conditions',
+    'picture_gallery' => 'Picture Gallery',
+    'events' => 'Events',
+    'news' => 'News',
+    'founders_section' => 'Founders Section',
+    'services_section' => 'Services Sections',
+    'founders' => "founders"
 
 ];

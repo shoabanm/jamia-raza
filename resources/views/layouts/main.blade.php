@@ -21,7 +21,6 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap&display=swap"></noscript>
   <link rel="preload" as="style" href="{{ asset('assets/frontend/mobirise/css/mbr-additional.css') }}"><link rel="stylesheet" href="{{ asset('assets/frontend/mobirise/css/mbr-additional.css') }}" type="text/css">
 
-  
   <style>
     .donate-btn {
       background-color: red;
@@ -35,126 +34,110 @@
     .donate-btn:hover {
       background-color: darkred;
     }
+	.active {
+		background: darkgray;
+	}
   </style>
   
 </head>
 <body>
   
-  <section data-bs-version="5.1" class="menu menu3 cid-uuaQzWYgQF" once="menu" id="menu03-3">
-	<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
-		<div class="container">
+	<section data-bs-version="5.1" class="menu menu3 cid-uuaQzWYgQF" once="menu" id="menu03-3">
+		<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+		  <div class="container">
 			<div class="navbar-brand">
-				<span class="navbar-logo" style="font-size: 30px;">
-					<a href="#">
-            جامعہ رضا العلوم
-					</a>
-				</span>
-				
+			  <span class="navbar-logo" style="font-size: 18px;">
+				<a href="/" style="color:red !important;">
+				  {{ __('frontend.title')}}
+				</a>
+			  </span>
+			  
 			</div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-				<div class="hamburger">
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
+			  <div class="hamburger">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			  </div>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-          <li class="nav-item dropdown">
-            <a class="nav-link link text-black display-4 dropdown-toggle" href="#" id="digitalLibraryDropdown" role="button" data-toggle="dropdown" aria-expanded="false">Digital Library</a>
-            <div class="dropdown-menu" aria-labelledby="digitalLibraryDropdown">
-              <a class="dropdown-item" href="#">E-Books</a>
-              <a class="dropdown-item" href="#">Journals</a>
-              <a class="dropdown-item" href="#">Articles</a>
-            </div>
-          </li>
-      
-          <li class="nav-item">
-            <a class="nav-link link text-black display-4" href="#">Teachers</a>
-          </li>
-      
-          <li class="nav-item dropdown">
-            <a class="nav-link link text-black display-4 dropdown-toggle" href="#" id="servicesDropdown" role="button" data-toggle="dropdown" aria-expanded="false">Services</a>
-            <div class="dropdown-menu" aria-labelledby="servicesDropdown">
-              <a class="dropdown-item" href="#">Hifz a Quran</a>
-              <a class="dropdown-item" href="#">Tajweed</a>
-              <a class="dropdown-item" href="#">Fiqa</a>
-              <a class="dropdown-item" href="#">Dars a Nizami</a>
-            </div>
-          </li>
-        </ul>
-      
-        <div class="icons-menu">
-      
-          <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-      
-          <!-- Additional Menus with Consistent Styling -->
-          <li class="nav-item dropdown" style="margin-right: 10px;">
-            <a class="nav-link link text-black display-4 dropdown-toggle" href="#" id="menu1Dropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-              Language
-            </a>
-            <div class="dropdown-menu" aria-labelledby="menu1Dropdown">
-              <a class="dropdown-item" href="#">English</a>
-              <a class="dropdown-item" href="#">Urdu</a>
-              <a class="dropdown-item" href="#">Arabic</a>
-            </div>
-          </li>
-      
-          <li class="nav-item dropdown" style="margin-right: 10px;">
-            <a class="nav-link link text-black display-4 dropdown-toggle" href="#" id="menu2Dropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-              Menu 2
-            </a>
-            <div class="dropdown-menu" aria-labelledby="menu2Dropdown">
-              <a class="dropdown-item" href="#">Submenu 2-1</a>
-              <a class="dropdown-item" href="#">Submenu 2-2</a>
-              <a class="dropdown-item" href="#">Submenu 2-3</a>
-            </div>
-          </li>
-      
-          <li class="nav-item dropdown">
-            <a class="nav-link link text-black display-4 dropdown-toggle" href="#" id="menu3Dropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-              Menu 3
-            </a>
-            <div class="dropdown-menu" aria-labelledby="menu3Dropdown">
-              <a class="dropdown-item" href="#">Submenu 3-1</a>
-              <a class="dropdown-item" href="#">Submenu 3-2</a>
-              <a class="dropdown-item" href="#">Submenu 3-3</a>
-            </div>
-          </li>
+			  <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+				<li class="nav-item">
+					<a class="nav-link link text-black display-4 {{ request()->routeIs('frontend.digital_libraray') ? 'active' : '' }}" href="{{ route('frontend.digital_libraray') }}">{{ __('frontend.digital_library') }}</a>
+				</li>
+			
+				<li class="nav-item">
+				  <a class="nav-link link text-black display-4 {{ request()->routeIs('frontend.teachers') ? 'active' : '' }}" href="{{ route('frontend.teachers') }}">{{ __('frontend.teachers') }}</a>
+				</li>
+			
+				<li class="nav-item">
+					<a class="nav-link link text-black display-4 {{ request()->routeIs('frontend.services') ? 'active' : '' }}" href="{{ route('frontend.services') }}">{{ __('frontend.services') }}</a>
+				</li>
+			  </ul>
+			
+			  <div class="icons-menu">
+			
+				<ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+			
+				<!-- Additional Menus with Consistent Styling -->
+				<li class="nav-item dropdown" style="margin-right: 10px;">
+				  <a class="nav-link link text-black display-4 dropdown-toggle" href="#" id="menu1Dropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+					{{ __('frontend.languages') }}
+				  </a>
+				  <div class="dropdown-menu" aria-labelledby="menu1Dropdown">
+					<a class="dropdown-item" href="{{ url('lang/en') }}">{{ __('frontend.english') }}</a>
+					<a class="dropdown-item" href="{{ url('lang/ur') }}">{{ __('frontend.urdu') }}</a>
+				  </div>
+				</li>
+			
+			  
+				<li class="nav-item d-flex">
+				  @if (Route::has('login'))
+						  @auth
+							  <a href="{{ url('/home') }}" style="white-space: nowrap;" class="nav-link link text-black display-4">{{ __('frontend.home') }}</a>
+						  @else
+							  <a href="{{ route('login') }}" style="white-space: nowrap;" class="nav-link link text-black display-4">{{ __('frontend.login') }}</a>
+	
+							  @if (Route::has('register'))
+								  <a href="{{ route('register') }}" style="white-space: nowrap;" class="ml-4 nav-link link text-black display-4">{{ __('frontend.register') }}</a>
+							  @endif
+						  @endauth
+				  @endif
+				</li>
+	
+			  </ul>
+	
+			</div>
+			
+			
+		  </div>
+		</nav>
+	</section>
 
-        </ul>
-
-      </div>
-      
-      
+	<section data-bs-version="5.1" class="header10 cid-uuaRroRxFA mbr-fullscreen" id="header10-b">
+		<div class="container-fluid">
+		  <div class="row">
+			<div class="content-wrap col-12 col-md-6">
+			  <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-1">
+				<strong> {{ __('frontend.quran_kareem') }} </strong>
+			  </h1>
+			  
+			  <p class="mbr-fonts-style mbr-text mbr-white mb-4 display-7">
+				أَيَحْسَبُ الْإِنسَانُ أَن يُتْرَكَ سُدًى
+				<br />
+				  Do people think they will be left without purpose?
+	  
+			  </p>
+			  <div class="mbr-section-btn">
+				<a class="btn btn-white display-7" href="#">{{ __('frontend.read_more') }} </a>
+			  </div>
+			</div>
+		  </div>
 		</div>
-	</nav>
-    </section>
-
-<section data-bs-version="5.1" class="header10 cid-uuaRroRxFA mbr-fullscreen" id="header10-b">
-  
-  
-  <div class="container-fluid">
-    <div class="row">
-      <div class="content-wrap col-12 col-md-6">
-        <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-1">
-          <strong>القرآن الكريم</strong>
-        </h1>
-        
-        <p class="mbr-fonts-style mbr-text mbr-white mb-4 display-7">
-          أَيَحْسَبُ الْإِنسَانُ أَن يُتْرَكَ سُدًى
-          <br />
-            Do people think they will be left without purpose?
-
-        </p>
-        <div class="mbr-section-btn">
-          <a class="btn btn-white display-7" href="#">Read More </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+	</section>
+	
+	@yield('content')
 
 <section data-bs-version="5.1" class="contacts2 map1 cid-uuaSmSEyRh" id="contacts02-j">
 
@@ -198,10 +181,6 @@
 </section>
 
 <section data-bs-version="5.1" class="social02 cid-uuaSqC8yWH" id="social02-k">
-	
-
-	
-	
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12 content-head">
@@ -297,10 +276,6 @@
 </section>
 
 <section data-bs-version="5.1" class="footer1 cid-uuaStsS2Vn" once="footers" id="footer01-l">
-	
-
-	
-	
 	<div class="container">
 		<div class="row mbr-white">
 			<div class="col-12 col-md-6 col-lg-3">
@@ -388,6 +363,7 @@
 		</div>
 	</div>
 </section>
+
 <script src="{{ asset('assets/frontend/bootstrap/js/bootstrap.bundle.min.js' ) }} "></script>  
 <script src="{{ asset('assets/frontend/smoothscroll/smooth-scroll.js' ) }} "></script>  
 <script src="{{ asset('assets/frontend/ytplayer/index.js' ) }} "></script>  

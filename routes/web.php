@@ -1,8 +1,19 @@
 <?php
 
+use App\Http\Controllers\AyatController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\FounderController;
+use App\Http\Controllers\GeneralSettingController;
+use App\Http\Controllers\HadithController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PictureGalleryController;
+use App\Http\Controllers\SayingController;
 use App\Http\Controllers\Services\ServiceController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubCampusController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,9 +38,13 @@ Route::get('lang/{locale}', function ($locale) {
     return redirect()->back();
 });
 
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/general-settings', [App\Http\Controllers\FrontendController::class, 'settings'])->name('settings');
+Route::get('/digital-library', [App\Http\Controllers\FrontendController::class, 'showBooksPage'])->name('frontend.digital_libraray');
+Route::get('/teachers', [App\Http\Controllers\FrontendController::class, 'showTeachersPage'])->name('frontend.teachers');
+Route::get('/services', [App\Http\Controllers\FrontendController::class, 'showServicesPage'])->name('frontend.services');
+Auth::routes();
 
 Route::controller(DepartmentController::class)
     ->middleware(['auth'])
@@ -43,6 +58,27 @@ Route::controller(DepartmentController::class)
         Route::delete('/{department}/delete', 'destroy')->name('admin.departments.destroy');
     });
 
+    // Resource routes
+    Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+        Route::resource('ayat', AyatController::class);
+        Route::resource('hadith', HadithController::class);
+        Route::resource('saying', SayingController::class);
+        Route::resource('picture_gallery', PictureGalleryController::class);
+        Route::resource('events', EventController::class);
+        Route::resource('news', NewsController::class);
+        Route::resource('books', BookController::class);
+        Route::resource('sub_campuses', SubCampusController::class);
+        Route::resource('teachers', TeacherController::class);
+        Route::resource('founders', FounderController::class)->except(['create', 'store']);
+    });
+    
+    // General settings routes 
+    Route::middleware('auth')->prefix('admin')->name('admin.')->group(function() {
+        Route::get('general-settings-app', [GeneralSettingController::class, 'index'])->name('general-settings-app.index');
+        Route::get('general-settings-app/edit', [GeneralSettingController::class, 'edit'])->name('general-settings-app.edit');
+        Route::put('general-settings-app', [GeneralSettingController::class, 'update'])->name('general-settings-app.update');
+    });
+    
     Route::controller(ServiceController::class)
     ->middleware(['auth'])
     ->prefix('admin/services')

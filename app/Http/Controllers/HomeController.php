@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Department;
+use App\Models\Event;
+use App\Models\News;
 use App\Models\Services\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -27,6 +31,9 @@ class HomeController extends Controller
     {
         $departments = count(Department::all());
         $services = count(Service::all());
-        return view('admin/home', compact('departments', 'services'));
+        $events = count(Event::all());
+        $news = count(News::all());
+        return view('admin/home', compact('departments', 'services', 'events', 'news'));
     }
+
 }

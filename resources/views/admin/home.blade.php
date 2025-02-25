@@ -33,60 +33,26 @@
         </div>
         <div class="col-xl-3 col-md-6">
             <div class="card bg-primary text-white mb-4">
-                <div class="card-body">{{ __('dashboard.events') }}</div>
+                <div class="card-body d-flex justify-content-between">
+                    <span>{{ __('dashboard.events') }}</span>
+                    <span class="badge bg-success">{{ $events }}</span>
+                </div> 
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link text-decoration-none" href="#">{{ __('dashboard.view_all') }}</a>
+                    <a class="small text-white stretched-link text-decoration-none" href="{{ route("admin.events.index") }}">{{ __('dashboard.view_all') }}</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
             <div class="card bg-primary text-white mb-4">
-                <div class="card-body">{{ __('dashboard.news_section') }}</div>
+                <div class="card-body d-flex justify-content-between">
+                    <span>{{ __('dashboard.news_section') }}</span>
+                    <span class="badge bg-success">{{ $news }}</span>
+                </div> 
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link text-decoration-none" href="#">{{ __('dashboard.view_all') }}</a>
+                    <a class="small text-white stretched-link text-decoration-none" href="{{ route('admin.news.index') }}">{{ __('dashboard.view_all') }}</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xl-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    {{ __('dashboard.ayat_of_the_day') }}
-                </div>
-                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-            </div>
-        </div>
-        <div class="col-xl-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-bar me-1"></i>
-                    {{ __('dashboard.hadith_of_the_day') }}
-                </div>
-                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xl-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    {{ __('dashboard.ayat_of_the_day') }}
-                </div>
-                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-            </div>
-        </div>
-        <div class="col-xl-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-bar me-1"></i>
-                    {{ __('dashboard.hadith_of_the_day') }}
-                </div>
-                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
             </div>
         </div>
     </div>

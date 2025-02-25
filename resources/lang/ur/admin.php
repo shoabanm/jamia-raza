@@ -31,4 +31,12 @@ return [
     'copyright' => 'جملہ حقوق محفوظ ہیں',
     'privacy_policy' => 'رازداری کی پالیسی',
     'terms_conditions' => 'شرائط و ضوابط',
+    'picture_gallery' => 'تصویر گیلری',
+    'events' => 'تقریبات',
+    'news' => 'خبریں',
+    'founders_section' => 'بانیوں کا سیکشن',
+    'services_section' => 'خدمات کا سیکشن',
+    'founders' => 'بانیان',
+    'hadith_of_the_day' => 'حدیثِ دن',
+    'saying_of_the_day' => 'قولِ دن',
 ];
