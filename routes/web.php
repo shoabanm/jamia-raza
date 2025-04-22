@@ -28,9 +28,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'ur'])) {
         session(['locale' => $locale]);
@@ -41,9 +38,19 @@ Route::get('lang/{locale}', function ($locale) {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/general-settings', [App\Http\Controllers\FrontendController::class, 'settings'])->name('settings');
+Route::get('/', [App\Http\Controllers\FrontendController::class, 'home'])->name('frontend.home');
 Route::get('/digital-library', [App\Http\Controllers\FrontendController::class, 'showBooksPage'])->name('frontend.digital_libraray');
 Route::get('/teachers', [App\Http\Controllers\FrontendController::class, 'showTeachersPage'])->name('frontend.teachers');
 Route::get('/services', [App\Http\Controllers\FrontendController::class, 'showServicesPage'])->name('frontend.services');
+Route::get('/services/{id}', [App\Http\Controllers\FrontendController::class, 'showSingleServicesPage'])->name('frontend.single.services');
+Route::get('/ayat-of-the-day/{id}', [App\Http\Controllers\FrontendController::class, 'showSingleAyatPage'])->name('frontend.single.ayat');
+Route::get('/hadith-of-the-day/{id}', [App\Http\Controllers\FrontendController::class, 'showSingleHadithPage'])->name('frontend.single.hadith');
+Route::get('/saying-of-the-day/{id}', [App\Http\Controllers\FrontendController::class, 'showSingleSayingPage'])->name('frontend.single.saying');
+Route::get('/department/{id}', [App\Http\Controllers\FrontendController::class, 'showSingleDepartmentPage'])->name('frontend.single.department');
+Route::get('/picture-galllery/{id}', [App\Http\Controllers\FrontendController::class, 'showSinglePictureGalleryPage'])->name('frontend.single.picture_gallery');
+Route::get('/event/{id}', [App\Http\Controllers\FrontendController::class, 'showSingleEventPage'])->name('frontend.single.event');
+Route::get('/news/{id}', [App\Http\Controllers\FrontendController::class, 'showSingleNewsPage'])->name('frontend.single.news');
+Route::get('/teacher/{id}', [App\Http\Controllers\FrontendController::class, 'showSingleTeacherPage'])->name('frontend.single.teacher');
 Auth::routes();
 
 Route::controller(DepartmentController::class)
@@ -71,6 +78,30 @@ Route::controller(DepartmentController::class)
         Route::resource('teachers', TeacherController::class);
         Route::resource('founders', FounderController::class)->except(['create', 'store']);
     });
+
+    // only users with “approve” may hit this
+    Route::patch(
+        'admin/ayat/{ayat}/approve',
+        [AyatController::class, 'approveAyat']
+    )
+    ->name('admin.ayat.approve')
+    ->middleware(['auth', 'can:approve']);
+
+    Route::patch(
+        'admin/hadith/{hadith}/approve',
+        [HadithController::class, 'approveHadith']
+    )
+    ->name('admin.hadith.approve')
+    ->middleware(['auth', 'can:approve']);
+
+    Route::patch(
+        'admin/saying/{saying}/approve',
+        [SayingController::class, 'approveSaying']
+    )
+    ->name('admin.saying.approve')
+    ->middleware(['auth', 'can:approve']);
+
+
     
     // General settings routes 
     Route::middleware('auth')->prefix('admin')->name('admin.')->group(function() {

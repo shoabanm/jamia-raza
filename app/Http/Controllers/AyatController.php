@@ -40,4 +40,16 @@ class AyatController extends Controller
         $ayat->delete();
         return redirect()->route('admin.ayat.index')->with('status', __('ayat.ayat_deleted'));
     }
+
+    // approve the ayat
+    public function approveAyat(AyatOfTheDay $ayat)
+    {
+        if (!$ayat->approved) {
+            $ayat->approved = true;
+            $ayat->save();
+            return back()->with('status', __('ayat.approved_success'));
+        }
+
+        return back()->with('status', __('ayat.already_approved'));
+    }
 }

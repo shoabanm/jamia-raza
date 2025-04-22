@@ -61,4 +61,9 @@ return [
     'read_recent_news' => 'اسلامی دنیا کی تازہ ترین خبریں پڑھیں',
     'islamic_news_headlines' => 'اسلامی خبریں کے سرخیاں',
     'islamic_excellence' => 'اسلامی عظمت',
+    'ayat_of_the_day' => 'آیت الیوم',
+    'hadith_of_the_day' => 'حدیث الیوم',
+    'saying_of_the_day' => 'قول الیوم',
+    'date' => 'تاریخ',
+    'not_approved_notice' => 'یہ آیت ابھی ایڈمن کی منظوری کی منتظر ہے۔',
 ];

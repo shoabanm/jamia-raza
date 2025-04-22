@@ -47,4 +47,16 @@ class SayingController extends Controller
         return redirect()->route('admin.saying.index')
                          ->with('status', __('saying.saying_deleted'));
     }
+
+    // approve the saying
+    public function approveSaying(SayingOfTheDay $saying)
+    {
+        if (!$saying->approved) {
+            $saying->approved = true;
+            $saying->save();
+            return back()->with('status', __('saying.approved_success'));
+        }
+
+        return back()->with('status', __('saying.already_approved'));
+    }
 }

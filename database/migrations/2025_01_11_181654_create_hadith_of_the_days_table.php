@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('content');
             $table->string('reference')->nullable();
             $table->date('display_date');
+            $table->boolean('approved')->default(0);
             $table->timestamps();
         });
     }

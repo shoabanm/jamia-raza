@@ -61,4 +61,9 @@ return [
     'read_recent_news' => 'Read the recent news about Islamic World',
     'islamic_news_headlines' => 'Islamic News Headlines',
     'islamic_excellence' => 'Islamic Excellence',
+    'ayat_of_the_day' => 'Ayat of the Day',
+    'hadith_of_the_day' => 'Hadith of the Day',
+    'saying_of_the_day' => 'Saying of the Day',
+    'date' => 'Date',
+    'not_approved_notice' => 'This Ayat is pending admin approval.',
 ];

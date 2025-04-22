@@ -9,7 +9,7 @@
   <meta name="description" content="">
   
   
-  <title>جامعہ رضا العلوم </title>
+  <title>{{ __('frontend.title')}}</title>
   <link rel="stylesheet" href="{{ asset('assets/frontend/web/assets/mobirise-icons2/mobirise2.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/frontend/bootstrap/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/frontend/bootstrap/css/bootstrap-grid.min.css') }}">
@@ -21,6 +21,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap&display=swap"></noscript>
   <link rel="preload" as="style" href="{{ asset('assets/frontend/mobirise/css/mbr-additional.css') }}"><link rel="stylesheet" href="{{ asset('assets/frontend/mobirise/css/mbr-additional.css') }}" type="text/css">
 
+  
   <style>
     .donate-btn {
       background-color: red;
@@ -34,20 +35,13 @@
     .donate-btn:hover {
       background-color: darkred;
     }
-	.active {
-		background: darkgray;
-	}
   </style>
   
 </head>
 <body>
-  
-	<x-navigation />
-  	<x-ayat-of-the-day :latestAyat="$latestAyat" />
-	
-	@yield('content')
 
-	<x-footer />
+    {{ $slot }}
+    @yield('content')
 
 <script src="{{ asset('assets/frontend/bootstrap/js/bootstrap.bundle.min.js' ) }} "></script>  
 <script src="{{ asset('assets/frontend/smoothscroll/smooth-scroll.js' ) }} "></script>  
@@ -56,7 +50,8 @@
 <script src="{{ asset('assets/frontend/embla/embla.min.js' ) }} "></script>  
 <script src="{{ asset('assets/frontend/embla/script.js' ) }} "></script>  
 <script src="{{ asset('assets/frontend/theme/js/script.js' ) }} "></script>  
-  
-  
+    
+    
 </body>
 </html>
+    

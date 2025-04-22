@@ -20,9 +20,15 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(RolesAndPermissionsSeeder::class);
+        $this->call(FounderSeeder::class);
+        // $this->call(DepartmentSeeder::class);
+        $this->call(GeneralSettingsSeeder::class);
 
         // Call the Users Seeder
         $this->call(UsersTableSeeder::class);
+        $this->call([
+            AllModelFactorySeeder::class,
+        ]);
         
     }
 }

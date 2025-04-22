@@ -34,6 +34,7 @@ class NewsRequest extends FormRequest
         return [
             'title.required' => __('news.title_required'),
             'youtube_link.required' => __('news.link_required'),
+            'youtube_link.url' => "Youtube link should be a link",
             'short_description.required' => __('news.description_required'),
         ];
     }

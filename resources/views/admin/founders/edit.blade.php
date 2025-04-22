@@ -3,7 +3,15 @@
 @section('content')
 <div class="container-fluid px-4">
     <h1 class="mt-4">{{ __('founders.edit_founder') }}</h1>
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="{{ route('admin.founders.update', $founder->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')

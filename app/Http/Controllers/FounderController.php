@@ -24,7 +24,7 @@ class FounderController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'designation' => 'required|string|max:255',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'picture' => 'nullable|image',
         ]);
 
         if ($request->hasFile('picture')) {

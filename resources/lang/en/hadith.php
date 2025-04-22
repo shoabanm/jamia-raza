@@ -16,4 +16,7 @@ return [
     'hadith_created' => 'Hadith has been created successfully!',
     'hadith_updated' => 'Hadith has been updated successfully!',
     'hadith_deleted' => 'Hadith has been deleted successfully!',
+    'approve'            => 'Approve',
+    'approved_success'   => 'Hadith approved successfully.',
+    'already_approved'   => 'This Hadith is already approved.',
 ];

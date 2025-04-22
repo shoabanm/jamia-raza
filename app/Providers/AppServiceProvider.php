@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\AyatOfTheDay;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        //  getting the ayat of the day in every page 
+        View::composer('*', function ($view) {
+            $latestAyat = AyatOfTheDay::whereApproved(1)->latest('display_date')->first();
+            $view->with('latestAyat', $latestAyat);
+        });      
     }
 }

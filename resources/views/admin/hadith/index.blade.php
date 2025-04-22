@@ -33,6 +33,14 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">{{ __('hadith.delete') }}</button>
                                 </form>
+                                @can('approve')
+                                    @unless($hadith->approved)
+                                        <form action="{{ route('admin.hadith.approve', $hadith) }}" method="POST" class="d-inline">
+                                            @csrf @method('PATCH')
+                                            <button class="btn btn-success">{{ __('hadith.approve') }}</button>
+                                        </form>
+                                    @endunless
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

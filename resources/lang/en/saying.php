@@ -16,4 +16,7 @@ return [
     'saying_created' => 'Saying has been created successfully!',
     'saying_updated' => 'Saying has been updated successfully!',
     'saying_deleted' => 'Saying has been deleted successfully!',
+    'approve'            => 'Approve',
+    'approved_success'   => 'Saying approved successfully.',
+    'already_approved'   => 'This Saying is already approved.',
 ];

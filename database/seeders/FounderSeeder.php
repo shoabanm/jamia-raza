@@ -12,23 +12,24 @@ class FounderSeeder extends Seeder
      */
     public function run(): void
     {
+        $defaultImage = 'uploads/default.jpg';
         // Inserting the three founders
         Founder::create([
             'name' => 'Imam Ahmad Raza Khan Barelvi',
             'designation' => 'Bani',
-            'picture' => 'uploads/founders/ahmad_raza_khan.jpg', // Use the relative path to the stored picture
+            'picture' => $defaultImage, // Use the relative path to the stored picture
         ]);
 
         Founder::create([
             'name' => 'Sheikh ul Islam Dr Tahir Ul Qadri',
             'designation' => 'Bani',
-            'picture' => 'uploads/founders/tahir_qadri.jpg', // Use the relative path to the stored picture
+            'picture' => $defaultImage, // Use the relative path to the stored picture
         ]);
 
         Founder::create([
             'name' => 'Allam Dr Ashraf Asif Jalai',
             'designation' => 'Bani',
-            'picture' => 'uploads/founders/ashraf_asif.jpg', // Use the relative path to the stored picture
+            'picture' => $defaultImage, // Use the relative path to the stored picture
         ]);
     }
 }

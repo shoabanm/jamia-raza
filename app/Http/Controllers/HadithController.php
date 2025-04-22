@@ -47,4 +47,17 @@ class HadithController extends Controller
         return redirect()->route('admin.hadith.index')
                          ->with('status', __('hadith.hadith_deleted'));
     }
+
+        // approve the ayat
+        public function approveHadith(HadithOfTheDay $hadith)
+        {
+            if (!$hadith->approved) {
+                $hadith->approved = true;
+                $hadith->save();
+                return back()->with('status', __('hadith.approved_success'));
+            }
+    
+            return back()->with('status', __('hadith.already_approved'));
+        }
+
 }

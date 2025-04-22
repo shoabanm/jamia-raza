@@ -17,4 +17,7 @@ return [
     'ayat_created' => 'Ayat has been created successfully!',
     'ayat_updated' => 'Ayat has been updated successfully!',
     'ayat_deleted' => 'Ayat has been deleted successfully!',
+    'approve'            => 'Approve',
+    'approved_success'   => 'Ayat approved successfully.',
+    'already_approved'   => 'This Ayat is already approved.',
 ];

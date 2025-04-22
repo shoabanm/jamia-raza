@@ -33,6 +33,14 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">{{ __('ayat.delete') }}</button>
                                 </form>
+                                @can('approve')
+                                    @unless($ayat->approved)
+                                        <form action="{{ route('admin.ayat.approve', $ayat) }}" method="POST" class="d-inline">
+                                            @csrf @method('PATCH')
+                                            <button class="btn btn-success">{{ __('ayat.approve') }}</button>
+                                        </form>
+                                    @endunless
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

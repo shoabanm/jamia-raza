@@ -12,6 +12,7 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         @stack('styles')
     </head>
+    <body style="font-family: cursive">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="/">{{ __('frontend.title')}}</a>
@@ -65,7 +66,16 @@
                                 {{ __('admin.general_settings') }}
                             </a>
 
-                            
+                            <a class="nav-link {{ request()->routeIs('admin.sub_campuses.index') || request()->routeIs('admin.sub_campuses.edit') ? 'active' : '' }}" href="{{ route('admin.sub_campuses.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                {{ __('campus.list') }}
+                            </a>
+
+                            <a class="nav-link {{ request()->routeIs('admin.books.index') || request()->routeIs('admin.books.edit') ? 'active' : '' }}" href="{{ route('admin.books.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                {{ __('books.books') }}
+                            </a>
+
                             
                             <!-- Departments Section -->
                             <div class="sb-sidenav-menu-heading">{{ __('admin.departments_section') }}</div>

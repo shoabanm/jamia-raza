@@ -33,6 +33,15 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">{{ __('saying.delete') }}</button>
                                 </form>
+                                @can('approve')
+                                    @unless($saying->approved)
+                                        <form action="{{ route('admin.saying.approve', $saying) }}" method="POST" class="d-inline">
+                                            @csrf @method('PATCH')
+                                            <button class="btn btn-success">{{ __('saying.approve') }}</button>
+                                        </form>
+                                    @endunless
+                                @endcan
+
                             </td>
                         </tr>
                     @endforeach

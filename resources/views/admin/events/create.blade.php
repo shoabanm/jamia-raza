@@ -3,7 +3,15 @@
 @section('content')
 <div class="container-fluid px-4">
     <h1 class="mt-4">{{ isset($event) ? __('events.edit') : __('events.create') }}</h1>
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="{{ isset($event) ? route('admin.events.update', $event->id) : route('admin.events.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if(isset($event))
