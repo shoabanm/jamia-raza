@@ -10,7 +10,7 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::all();
+        $events = Event::paginate(2);
         return view('admin.events.index', compact('events'));
     }
 
@@ -26,7 +26,7 @@ class EventController extends Controller
         // Handle multiple picture uploads
         if ($request->hasFile('pictures')) {
             $pictures = [];
-            foreach ($request->file('pictures') as $picture) {
+            foreach ($request->file('pictures') ?? [] as $picture) {
                 $fileName = time() . '_' . $picture->getClientOriginalName();
                 $path = $picture->storeAs('uploads/events', $fileName, 'public');
                 $pictures[] = $path;
@@ -57,7 +57,7 @@ class EventController extends Controller
 
             // Store new pictures
             $pictures = [];
-            foreach ($request->file('pictures') as $picture) {
+            foreach ($request->file('pictures') ?? [] as $picture) {
                 $fileName = time() . '_' . $picture->getClientOriginalName();
                 $path = $picture->storeAs('uploads/events', $fileName, 'public');
                 $pictures[] = $path;
@@ -74,7 +74,7 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         if ($event->pictures) {
-            foreach (json_decode($event->pictures) as $picture) {
+            foreach (json_decode($event->pictures) ?? [] as $picture) {
                 Storage::disk('public')->delete($picture);
             }
         }

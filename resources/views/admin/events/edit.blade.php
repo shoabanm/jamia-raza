@@ -38,7 +38,7 @@
             <input type="file" name="pictures[]" class="form-control" multiple>
             @if(isset($event) && $event->pictures)
                 <div class="mt-2">
-                    @foreach(json_decode($event->pictures) as $picture)
+                    @foreach(json_decode($event->pictures) ?? [] as $picture)
                         <img src="{{ asset('storage/' . $picture) }}" width="50" alt="Event Image">
                     @endforeach
                 </div>

@@ -10,7 +10,7 @@ class SubCampusController extends Controller
 {
     public function index()
     {
-        $subCampuses = SubCampus::all();
+        $subCampuses = SubCampus::paginate(5);
         return view('admin.sub_campuses.index', compact('subCampuses'));
     }
 

@@ -37,6 +37,9 @@ Route::get('lang/{locale}', function ($locale) {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+Route::post('/update_profile', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('profile.update');
+Route::get('/admin/users', [App\Http\Controllers\HomeController::class, 'allUsers'])->name('admin.users.index');
 Route::get('/general-settings', [App\Http\Controllers\FrontendController::class, 'settings'])->name('settings');
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'home'])->name('frontend.home');
 Route::get('/digital-library', [App\Http\Controllers\FrontendController::class, 'showBooksPage'])->name('frontend.digital_libraray');

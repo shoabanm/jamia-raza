@@ -14,6 +14,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
+        Role::firstOrCreate(['name' => 'superadmin']);
+        Role::firstOrCreate(['name' => 'moderator']);
+        Role::firstOrCreate(['name' => 'user']);
         $superAdmin = User::create([
             'name' => 'Superadmin User',
             'email' => 'superadmin@example.com',

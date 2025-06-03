@@ -6,6 +6,7 @@ use App\Models\AyatOfTheDay;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $latestAyat = AyatOfTheDay::whereApproved(1)->latest('display_date')->first();
             $view->with('latestAyat', $latestAyat);
-        });      
+        });
+        Paginator::useBootstrap();
     }
 }

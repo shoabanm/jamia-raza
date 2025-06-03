@@ -46,6 +46,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center mt-3">
+                {{ $hadiths->links() }}
+            </div>
         </div>
     </div>
 </div>

@@ -9,7 +9,7 @@ class AyatController extends Controller
 {
     public function index()
     {
-        $ayats = AyatOfTheDay::all();
+        $ayats = AyatOfTheDay::paginate(5);
         return view('admin.ayat.index', compact('ayats'));
     }
 

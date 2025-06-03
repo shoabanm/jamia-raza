@@ -8,7 +8,9 @@
   <link rel="shortcut icon" href="{{ asset('assets/frontend/images/logo.png') }}" type="image/x-icon">
   <meta name="description" content="">
   
-  
+  <!-- Add this in the <head> section -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <title>{{ __('frontend.title')}}</title>
   <link rel="stylesheet" href="{{ asset('assets/frontend/web/assets/mobirise-icons2/mobirise2.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/frontend/bootstrap/css/bootstrap.min.css') }}">
@@ -23,6 +25,9 @@
 
   
   <style>
+    body {
+      font-family: 'Montserrat', sans-serif !important;
+    }
     .donate-btn {
       background-color: red;
       color: white;

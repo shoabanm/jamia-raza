@@ -3,70 +3,95 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="shortcut icon" href="{{ asset('assets/frontend/images/logo.png') }}" type="image/x-icon">
 
-
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-    <!-- Scripts -->
-    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    <style>
+        body {
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+            font-family: 'Montserrat', sans-serif;
+        }
+        .navbar, .dropdown-menu {
+            background-color: #111 !important;
+        }
+        .navbar a, .dropdown-item {
+            color: #fff !important;
+        }
+        .navbar a:hover, .dropdown-item:hover {
+            color: #ccc !important;
+        }
+        .card {
+            background-color: #1c1c1c;
+            color: #fff;
+            border: none;
+        }
+        .form-control {
+            background-color: #2b2b2b;
+            border: 1px solid #555;
+            color: #fff;
+        }
+        .form-control:focus {
+            background-color: #222;
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .invalid-feedback {
+            color: #f88;
+        }
+        .card-header {
+            background-color: #111;
+            border-bottom: 1px solid #333;
+        }
+    </style>
 </head>
-<body style="font-family: cursive">
+<body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand text-white" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
+                    <!-- Left Side -->
+                    <ul class="navbar-nav me-auto"></ul>
+                    <!-- Right Side -->
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                             @endif
-
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-end">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                                 document.getElementById('logout-form').submit();">
+                                        Logout
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
                                 </div>
                             </li>
                         @endguest
@@ -76,13 +101,16 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+                @yield('content')
+            </div>
         </main>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     @yield('scripts')
 </body>
 </html>

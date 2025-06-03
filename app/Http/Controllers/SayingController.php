@@ -10,7 +10,7 @@ class SayingController extends Controller
 {
     public function index()
     {
-        $sayings = SayingOfTheDay::all();
+        $sayings = SayingOfTheDay::paginate(5);
         return view('admin.saying.index', compact('sayings'));
     }
 

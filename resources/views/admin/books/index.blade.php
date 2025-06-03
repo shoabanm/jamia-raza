@@ -43,5 +43,8 @@
             @endforeach
         </tbody>
     </table>
+    <div class="d-flex justify-content-center mt-3">
+        {{ $books->links() }}
+    </div>
 </div>
 @endsection

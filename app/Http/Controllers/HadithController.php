@@ -10,7 +10,7 @@ class HadithController extends Controller
 {
     public function index()
     {
-        $hadiths = HadithOfTheDay::all();
+        $hadiths = HadithOfTheDay::paginate(5);
         return view('admin.hadith.index', compact('hadiths'));
     }
 

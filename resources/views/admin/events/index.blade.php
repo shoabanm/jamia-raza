@@ -29,7 +29,7 @@
                         <td>{{ $event->description }}</td>
                         <td>
                             @if($event->pictures)
-                                @foreach(json_decode($event->pictures) as $picture)
+                                @foreach(json_decode($event->pictures) ?? [] as $picture)
                                     <img src="{{ asset('storage/' . $picture) }}" width="50" alt="Event Image">
                                 @endforeach
                             @endif
@@ -46,6 +46,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center mt-3">
+                {{ $events->links() }}
+            </div>
         </div>
     </div>
 </div>

@@ -11,8 +11,9 @@
         <link href="{{ asset('assets/admin/css/styles.css') }}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         @stack('styles')
+  
     </head>
-    <body style="font-family: cursive">
+    <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="/">{{ __('frontend.title')}}</a>
@@ -37,8 +38,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">{{ __('admin.settings') }}</a></li>
-                        <li><a class="dropdown-item" href="#">{{ __('admin.activity_log') }}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profile') }}">{{ __('admin.settings') }}</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('admin.logout') }}
@@ -121,10 +121,9 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="{{ route('admin.news.index') }}">{{ __('admin.all_posts') }}</a>
-                                    <a class="nav-link" href="#">{{ __('admin.pending_posts') }}</a>
                                 </nav>
                             </div>
-                            
+                            @can('approve')
                             @php
                                 $userRoutes = [
                                     'admin.students.index',
@@ -138,17 +137,16 @@
                             </a>
                             <div class="collapse {{ in_array(Route::currentRouteName(), $userRoutes) ? 'show' : '' }}" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">{{ __('admin.all_users') }}</a>
-                                    <a class="nav-link" href="#">{{ __('admin.moderators') }}</a>
+                                    <a class="nav-link" href="{{ route('admin.users.index') }}">{{ __('admin.all_users') }}</a>
                                     <a class="nav-link {{ request()->routeIs('admin.teachers.index') ? 'active' : '' }}" href="{{ route('admin.teachers.index') }}">
                                         {{ __('admin.teachers') }}
                                     </a>
                                     <a class="nav-link {{ request()->routeIs('admin.students.index') ? 'active' : '' }}" href="{{ route('admin.students.index') }}">
                                         {{ __('admin.students') }}
-                                    </a>                                                                       
-                                    <a class="nav-link" href="#">{{ __('admin.normal_users') }}</a>
+                                    </a>                                                           
                                 </nav>
                             </div>
+                            @endcan
                             <a class="nav-link {{ request()->routeIs('admin.picture_gallery.index') || request()->routeIs('admin.picture_gallery.create') || request()->routeIs('admin.picture_gallery.edit')? 'active' : '' }}" href="{{ route("admin.picture_gallery.index") }}" >
                                 {{ __('admin.picture_gallery') }}
                             </a>
@@ -170,7 +168,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">{{ __('admin.copyright') }} &copy; 2023</div>
+                            <div class="text-muted">{{ __('admin.copyright') }} &copy; {{ date('Y') }}</div>
                             <div>
                                 <a href="#">{{ __('admin.privacy_policy') }}</a>
                                 &middot;

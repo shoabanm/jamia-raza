@@ -12,7 +12,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with('department')->get();
+        $students = Student::with('department')->paginate(5);
         return view('admin.students.index', compact('students'));
     }
 
