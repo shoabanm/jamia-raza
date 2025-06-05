@@ -3,7 +3,9 @@
 @section('content')
 <div class="container-fluid px-4">
     <h1 class="mt-4">{{ __('ayat.title') }}</h1>
-    <a href="{{ route('admin.ayat.create') }}" class="btn btn-primary">{{ __('ayat.add_new') }}</a>
+    @can('add')
+        <a href="{{ route('admin.ayat.create') }}" class="btn btn-primary">{{ __('ayat.add_new') }}</a>
+    @endcan
 
     <div class="card mt-4">
         <div class="card-header">{{ __('ayat.list') }}</div>
@@ -26,22 +28,24 @@
                             <td>{{ $ayat->content }}</td>
                             <td>{{ $ayat->reference }}</td>
                             <td>{{ $ayat->display_date }}</td>
-                            <td>
-                                <a href="{{ route('admin.ayat.edit', $ayat->id) }}" class="btn btn-warning">{{ __('ayat.edit') }}</a>
-                                <form action="{{ route('admin.ayat.destroy', $ayat->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">{{ __('ayat.delete') }}</button>
-                                </form>
-                                @can('approve')
-                                    @unless($ayat->approved)
-                                        <form action="{{ route('admin.ayat.approve', $ayat) }}" method="POST" class="d-inline">
-                                            @csrf @method('PATCH')
-                                            <button class="btn btn-success">{{ __('ayat.approve') }}</button>
-                                        </form>
-                                    @endunless
-                                @endcan
-                            </td>
+                            @can('edit')
+                                <td>
+                                    <a href="{{ route('admin.ayat.edit', $ayat->id) }}" class="btn btn-warning">{{ __('ayat.edit') }}</a>
+                                    <form action="{{ route('admin.ayat.destroy', $ayat->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">{{ __('ayat.delete') }}</button>
+                                    </form>
+                                    @can('approve')
+                                        @unless($ayat->approved)
+                                            <form action="{{ route('admin.ayat.approve', $ayat) }}" method="POST" class="d-inline">
+                                                @csrf @method('PATCH')
+                                                <button class="btn btn-success">{{ __('ayat.approve') }}</button>
+                                            </form>
+                                        @endunless
+                                    @endcan
+                                </td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>

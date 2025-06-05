@@ -7,9 +7,9 @@
     @if(session('status'))
         <div class="alert alert-success">{{ session('status') }}</div>
     @endif
-
+    @can('add')
     <a href="{{ route('admin.sub_campuses.create') }}" class="btn btn-primary">{{ __('campus.create') }}</a>
-
+    @endcan
     <table class="table table-bordered mt-4">
         <thead>
             <tr>
@@ -25,6 +25,7 @@
                     <td>{{ $subCampus->campus_name }}</td>
                     <td>{{ $subCampus->enrolled_students }}</td>
                     <td>{{ $subCampus->teachers }}</td>
+                    @can('edit')
                     <td>
                         <a href="{{ route('admin.sub_campuses.edit', $subCampus->id) }}" class="btn btn-warning">{{ __('campus.edit') }}</a>
                         <form action="{{ route('admin.sub_campuses.destroy', $subCampus->id) }}" method="POST" style="display:inline-block;">
@@ -33,6 +34,7 @@
                             <button type="submit" class="btn btn-danger">{{ __('campus.delete') }}</button>
                         </form>
                     </td>
+                    @endcan
                 </tr>
             @endforeach
         </tbody>

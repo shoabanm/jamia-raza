@@ -2,7 +2,9 @@
 @section('content')
 <div class="container-fluid px-4">
     <h1 class="mt-4">{{ __('labels.departments') }}</h1>
-    <a href="{{ route('admin.departments.create') }}" class="btn btn-primary">{{ __('labels.add_department') }}</a>
+    @can('add')
+        <a href="{{ route('admin.departments.create') }}" class="btn btn-primary">{{ __('labels.add_department') }}</a>
+    @endcan
     <div class="card mt-4">
         <div class="card-header">{{ __('labels.department_list') }}</div>
         <div class="card-body">
@@ -22,14 +24,16 @@
                         <tr>
                             <td>{{ $department->short_name }}</td>
                             <td>{{ $department->title }}</td>
-                            <td>
-                                <a href="{{ route('admin.departments.edit', $department->id) }}" class="btn btn-warning">{{ __('actions.edit') }}</a>
-                                <form action="{{ route('admin.departments.destroy', $department->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">{{ __('actions.delete') }}</button>
-                                </form>
-                            </td>
+                            @can('edit')
+                                <td>
+                                    <a href="{{ route('admin.departments.edit', $department->id) }}" class="btn btn-warning">{{ __('actions.edit') }}</a>
+                                    <form action="{{ route('admin.departments.destroy', $department->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">{{ __('actions.delete') }}</button>
+                                    </form>
+                                </td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>

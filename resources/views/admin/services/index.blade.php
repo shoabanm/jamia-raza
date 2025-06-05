@@ -2,7 +2,9 @@
 @section('content')
 <div class="container-fluid px-4">
     <h1 class="mt-4">{{ __('labels.services') }}</h1>
+    @can('add')
     <a href="{{ route('admin.services.create') }}" class="btn btn-primary">{{ __('labels.add_service') }}</a>
+    @endcan
     <div class="card mt-4">
         <div class="card-header">{{ __('labels.services_list') }}</div>
         <div class="card-body">
@@ -24,6 +26,7 @@
                             <td>{{ $service->short_name }}</td>
                             <td>{{ $service->title }}</td>
                             <td>{{ $service->show ? __('labels.yes') : __('labels.no') }}</td>
+                            @can('edit')
                             <td>
                                 <a href="{{ route('admin.services.edit', $service->id) }}" class="btn btn-warning">{{ __('actions.edit') }}</a>
                                 <form action="{{ route('admin.services.destroy', $service->id) }}" method="POST" style="display:inline;">
@@ -32,6 +35,7 @@
                                     <button type="submit" class="btn btn-danger">{{ __('actions.delete') }}</button>
                                 </form>
                             </td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>

@@ -3,9 +3,9 @@
 @section('content')
 <div class="container-fluid px-4">
     <h1 class="mt-4">{{ __('general_settings.settings') }}</h1>
-
+    @can('approve')
     <a href="{{ route('admin.general-settings-app.edit') }}" class="btn btn-primary">{{ __('actions.edit') }}</a>
-
+    @endcan
     <div class="card mt-4">
         <div class="card-header">{{ __('general_settings.settings') }}</div>
         <div class="card-body">

@@ -3,8 +3,9 @@
 @section('content')
 <div class="container-fluid px-4">
     <h1 class="mt-4">{{ __('students.title') }}</h1>
+    @can('add')
     <a href="{{ route('admin.students.create') }}" class="btn btn-primary">{{ __('students.create') }}</a>
-
+    @endcan
     <!-- Card Container -->
     <div class="card mt-4">
         <div class="card-header">{{ __('students.title') }}</div>
@@ -30,6 +31,7 @@
                         <td>{{ $student->first_name }}</td>
                         <td>{{ $student->last_name }}</td>
                         <td>{{ $student->department->title }}</td>
+                        @can('edit')
                         <td>
                             <a href="{{ route('admin.students.edit', $student) }}" class="btn btn-warning">{{ __('students.edit') }}</a>
                             <form action="{{ route('admin.students.destroy', $student) }}" method="POST" class="d-inline">
@@ -38,6 +40,7 @@
                                 <button class="btn btn-danger">{{ __('students.delete') }}</button>
                             </form>
                         </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>

@@ -3,8 +3,9 @@
 @section('content')
 <div class="container-fluid px-4">
     <h1 class="mt-4">{{ __('saying.title') }}</h1>
+    @can("add")
     <a href="{{ route('admin.saying.create') }}" class="btn btn-primary">{{ __('saying.add_new') }}</a>
-
+    @endcan
     <div class="card mt-4">
         <div class="card-header">{{ __('saying.list') }}</div>
         <div class="card-body">
@@ -26,6 +27,7 @@
                             <td>{{ $saying->content }}</td>
                             <td>{{ $saying->reference }}</td>
                             <td>{{ $saying->display_date }}</td>
+                            @can('edit')
                             <td>
                                 <a href="{{ route('admin.saying.edit', $saying->id) }}" class="btn btn-warning">{{ __('saying.edit') }}</a>
                                 <form action="{{ route('admin.saying.destroy', $saying->id) }}" method="POST" style="display:inline;">
@@ -41,8 +43,8 @@
                                         </form>
                                     @endunless
                                 @endcan
-
                             </td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>

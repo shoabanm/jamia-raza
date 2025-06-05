@@ -25,14 +25,16 @@
                     <tr>
                         <td>{{ $gallery->title }}</td>
                         <td><img src="{{ asset('storage/' . $gallery->picture) }}" alt="{{ $gallery->title }}" width="50"></td>
-                        <td>
-                            <a href="{{ route('admin.picture_gallery.edit', $gallery->id) }}" class="btn btn-warning">{{ __('actions.edit') }}</a>
-                            <form action="{{ route('admin.picture_gallery.destroy', $gallery) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger">{{ __('actions.delete') }}</button>
-                            </form>
-                        </td>
+                        @can('edit')
+                            <td>
+                                <a href="{{ route('admin.picture_gallery.edit', $gallery->id) }}" class="btn btn-warning">{{ __('actions.edit') }}</a>
+                                <form action="{{ route('admin.picture_gallery.destroy', $gallery) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger">{{ __('actions.delete') }}</button>
+                                </form>
+                            </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>

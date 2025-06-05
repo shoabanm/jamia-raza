@@ -3,7 +3,9 @@
 @section('content')
 <div class="container-fluid px-4">
     <h1 class="mt-4">{{ __('events.title') }}</h1>
-    <a href="{{ route('admin.events.create') }}" class="btn btn-primary">{{ __('events.add') }}</a>
+    @can('add')
+        <a href="{{ route('admin.events.create') }}" class="btn btn-primary">{{ __('events.add') }}</a>
+    @endcan
 
     <div class="card mt-4">
         <div class="card-header">{{ __('events.list') }}</div>
@@ -34,14 +36,16 @@
                                 @endforeach
                             @endif
                         </td>
-                        <td>
-                            <a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-warning">{{ __('actions.edit') }}</a>
-                            <form action="{{ route('admin.events.destroy', $event) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger">{{ __('actions.delete') }}</button>
-                            </form>
-                        </td>
+                        @can('edit')
+                            <td>
+                                <a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-warning">{{ __('actions.edit') }}</a>
+                                <form action="{{ route('admin.events.destroy', $event) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger">{{ __('actions.delete') }}</button>
+                                </form>
+                            </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>

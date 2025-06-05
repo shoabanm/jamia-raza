@@ -10,7 +10,9 @@
 
     <!-- Add Teacher Button -->
     <div class="mb-3">
+        @can('add')
         <a href="{{ route('admin.teachers.create') }}" class="btn btn-primary">{{ __('teacher.create') }}</a>
+        @endcan
     </div>
 
     <table class="table table-bordered">
@@ -32,6 +34,7 @@
                     <td>{{ $teacher->age }}</td>
                     <td>{{ $teacher->designation }}</td>
                     <td><img src="{{ asset('storage/' . $teacher->picture) }}" alt="{{ $teacher->name }}" width="50"></td>
+                    @can('edit')
                     <td>
                         <a href="{{ route('admin.teachers.edit', $teacher->id) }}" class="btn btn-warning">{{ __('teacher.edit') }}</a>
                         <form action="{{ route('admin.teachers.destroy', $teacher->id) }}" method="POST" style="display:inline-block;">
@@ -40,6 +43,7 @@
                             <button type="submit" class="btn btn-danger">{{ __('teacher.delete') }}</button>
                         </form>
                     </td>
+                    @endcan
                 </tr>
             @endforeach
         </tbody>

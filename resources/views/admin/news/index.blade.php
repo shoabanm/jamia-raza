@@ -3,7 +3,9 @@
 @section('content')
 <div class="container-fluid px-4">
     <h1 class="mt-4">{{ __('news.list') }}</h1>
-    <a href="{{ route('admin.news.create') }}" class="btn btn-primary">{{ __('news.add') }}</a>
+    @can('add')
+        <a href="{{ route('admin.news.create') }}" class="btn btn-primary">{{ __('news.add') }}</a>
+    @endcan
 
     <div class="card mt-4">
         <div class="card-header">{{ __('news.list') }}</div>
@@ -24,14 +26,16 @@
                     <tr>
                         <td>{{ $news_item->title }}</td>
                         <td><img src="{{ asset('storage/' . $news_item->image) }}" alt="{{ $news_item->title }}" width="50"></td>
-                        <td>
-                            <a href="{{ route('admin.news.edit', $news_item->id) }}" class="btn btn-warning">{{ __('actions.edit') }}</a>
-                            <form action="{{ route('admin.news.destroy', $news_item) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger">{{ __('actions.delete') }}</button>
-                            </form>
-                        </td>
+                        @can('edit')
+                            <td>
+                                <a href="{{ route('admin.news.edit', $news_item->id) }}" class="btn btn-warning">{{ __('actions.edit') }}</a>
+                                <form action="{{ route('admin.news.destroy', $news_item) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger">{{ __('actions.delete') }}</button>
+                                </form>
+                            </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>

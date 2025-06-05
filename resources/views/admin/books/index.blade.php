@@ -7,9 +7,9 @@
     @if(session('status'))
         <div class="alert alert-success">{{ session('status') }}</div>
     @endif
-
-    <a href="{{ route('admin.books.create') }}" class="btn btn-primary mb-3">{{ __('books.add_new_book') }}</a>
-
+    @can('add')
+        <a href="{{ route('admin.books.create') }}" class="btn btn-primary mb-3">{{ __('books.add_new_book') }}</a>
+    @endcan
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -31,14 +31,16 @@
                     <td>{{ $book->description }}</td>
                     <td><img src="{{ asset('storage/' . $book->picture) }}" alt="{{ $book->book_name }}" width="50"></td>
                     <td><a href="{{ $book->external_link }}" target="_blank">{{ __('books.external_link') }}</a></td>
-                    <td>
-                        <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-warning">{{ __('books.edit') }}</a>
-                        <form action="{{ route('admin.books.destroy', $book->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">{{ __('books.delete') }}</button>
-                        </form>
-                    </td>
+                    @can('edit')
+                        <td>
+                            <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-warning">{{ __('books.edit') }}</a>
+                            <form action="{{ route('admin.books.destroy', $book->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">{{ __('books.delete') }}</button>
+                            </form>
+                        </td>
+                    @endcan
                 </tr>
             @endforeach
         </tbody>

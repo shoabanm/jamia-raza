@@ -23,9 +23,11 @@
                     <td>{{ $founder->name }}</td>
                     <td>{{ $founder->designation }}</td>
                     <td><img src="{{ asset('storage/' . $founder->picture) }}" alt="{{ $founder->name }}" width="50"></td>
+                    @can('approve')
                     <td>
                         <a href="{{ route('admin.founders.edit', $founder->id) }}" class="btn btn-warning">{{ __('founders.edit_founder') }}</a>
                     </td>
+                    @endcan
                 </tr>
             @endforeach
         </tbody>

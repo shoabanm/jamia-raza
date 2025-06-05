@@ -3,8 +3,9 @@
 @section('content')
 <div class="container-fluid px-4">
     <h1 class="mt-4">{{ __('hadith.title') }}</h1>
+    @can('add')
     <a href="{{ route('admin.hadith.create') }}" class="btn btn-primary">{{ __('hadith.add_new') }}</a>
-
+    @endcan
     <div class="card mt-4">
         <div class="card-header">{{ __('hadith.list') }}</div>
         <div class="card-body">
@@ -26,6 +27,7 @@
                             <td>{{ $hadith->content }}</td>
                             <td>{{ $hadith->reference }}</td>
                             <td>{{ $hadith->display_date }}</td>
+                            @can('edit')
                             <td>
                                 <a href="{{ route('admin.hadith.edit', $hadith->id) }}" class="btn btn-warning">{{ __('hadith.edit') }}</a>
                                 <form action="{{ route('admin.hadith.destroy', $hadith->id) }}" method="POST" style="display:inline;">
@@ -42,6 +44,7 @@
                                     @endunless
                                 @endcan
                             </td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>
